@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 // Should hold mark related functions.
 #include <iostream>
+#include <iomanip>
 #include "Marks.h"
 
 using namespace std;
@@ -16,6 +17,11 @@ void markstat() {
 	
 	char aft;					// Detect trail chars for numMarks.
 	int keepTrying = 1;			// Looper.
+
+	int total = 0;				// For average calculation.
+	double average = 0;			// For marks average.
+
+	int numPassMarks = 0;		// For calculating number of passing marks.
 
 	// PRINT TITLE:
 	cout << "Mark Stats Program" << endl;
@@ -48,7 +54,6 @@ void markstat() {
 		}
 		// If all checks pass, end loop:
 		else {
-			cout << "DONE" << endl;
 			keepTrying = 0;
 		}
 	} while (keepTrying == 1);
@@ -81,8 +86,23 @@ void markstat() {
 
 	cout << endl;
 
-	cout << "Average: ";
-	cout << "Number of passing marks: ";
+	// CALCULATE AVERAGE:
+	total = 0;
+	for (int i = 0; i < numMarks; i++) {
+		total += marks[i];
+	}
+	average = (float)(int)( ((float)total / (float)numMarks) * 100 ) / 100;
+
+	cout << "Average: " << fixed << setprecision(1) << average << endl;
+
+	// CALCULATE NUMBER OF PASSING MARKS:
+	numPassMarks = 0;
+	for (int i = 0; i < numMarks; i++) {
+		if (marks[i] >= 50) {
+			numPassMarks += 1;
+		}
+	}
+	cout << "Number of passing marks: " << numPassMarks;
 
 	/*
 	output:
