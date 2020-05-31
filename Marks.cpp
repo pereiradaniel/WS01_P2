@@ -10,13 +10,12 @@ void clear(void);
 void markstat() {
 	// VARS:
 	char assessmentName[100];	// Name of assessment.
-	int numMarks;				// number of marks.
+	int numMarks = 0;			// number of marks.
 	char aft;					// Detect trail chars for numMarks.
 	int keepTrying = 1;			// Looper.
-
 	// PRINT TITLE:
 	cout << "Mark Stats Program" << endl;
-	cout << endl;
+	// cout << endl;
 
 	// ACCEPT INPUTS:
 	cout << "Please enter the assessment name: ";
@@ -27,10 +26,15 @@ void markstat() {
 	cout << "Please enter the number of marks: ";
 	do {
 		// Number of marks input:
+		numMarks = 0;
 		scanf_s("%d%c", &numMarks, &aft);
-
+		// Check if valid number:
+		if (numMarks == 0) {
+			cout << "Invalid Number, try again: ";
+			clear();
+		}
 		// Check if there are trailing chars:
-		if (aft != '\n') {
+		else if (aft != '\n') {
 			cout << "Invalid trailing characters, try again: ";
 			clear();
 		}
@@ -45,10 +49,19 @@ void markstat() {
 		}
 	} while (keepTrying == 1);
 	
+	// GET numMarks x marks:
+	cout << "Please enter 9 marks (0<=Mark<=100): " << endl;
+
+	// for (int i = 0; i < numMarks; i++) {
+
+	// }
 	
 
 	// PRINT OUTPUT:
-	cout << assessmentName << endl;
+	cout << "Thank you..." << endl;
+	cout << "Assessment Name: " << assessmentName << endl;
+	cout << "----------------" << endl;
+
 	cout << numMarks << endl;
 
 	/*
