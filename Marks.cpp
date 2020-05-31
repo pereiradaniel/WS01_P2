@@ -9,10 +9,14 @@ void clear(void);
 
 void markstat() {
 	// VARS:
-	char assessmentName[100];	// Name of assessment.
-	int numMarks = 0;			// number of marks.
+	char assessmentName[40];	// Name of assessment.
+
+	int* marks = nullptr;		// Create pointer for marks.
+	int numMarks = 0;			// Number of marks.
+	
 	char aft;					// Detect trail chars for numMarks.
 	int keepTrying = 1;			// Looper.
+
 	// PRINT TITLE:
 	cout << "Mark Stats Program" << endl;
 	// cout << endl;
@@ -48,13 +52,17 @@ void markstat() {
 			keepTrying = 0;
 		}
 	} while (keepTrying == 1);
+
+	// Allocate memory for marks:
+	marks = new int[numMarks];
 	
 	// GET numMarks x marks:
-	cout << "Please enter 9 marks (0<=Mark<=100): " << endl;
+	cout << "Please enter " << numMarks << " marks (0<=Mark<=100): " << endl;
 
-	// for (int i = 0; i < numMarks; i++) {
-
-	// }
+	for (int i = 0; i < numMarks; i++) {
+		cout << i + 1 << "> ";
+		cin >> marks[i];
+	}
 	
 
 	// PRINT OUTPUT:
@@ -62,7 +70,19 @@ void markstat() {
 	cout << "Assessment Name: " << assessmentName << endl;
 	cout << "----------------" << endl;
 
-	cout << numMarks << endl;
+	for (int i = 0; i < numMarks; i++) {
+		if (i == numMarks - 1) {
+			cout << marks[i] << endl;
+		}
+		else {
+			cout << marks[i] << ", ";
+		}
+	}
+
+	cout << endl;
+
+	cout << "Average: ";
+	cout << "Number of passing marks: ";
 
 	/*
 	output:
